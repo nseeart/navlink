@@ -23,11 +23,6 @@ export interface LoginRequest {
     password: string;
 }
 
-export type AuthState = {
-    user: User | null;
-    token: string | null;
-};
-
 export type UserList = User[];
 export interface UserListResponse extends ListPageResponse<UserList> {}
 export type UserState = {

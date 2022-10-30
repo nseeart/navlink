@@ -13,8 +13,11 @@ import type {
     UserResponse,
     BufferJSON,
 } from '@/globals/types';
-import { setToken, setUser } from '@/globals/features/authSlice';
-import { setLoginState } from '@/globals/features/globalSlice';
+import {
+    setToken,
+    setUser,
+    updateLoginState,
+} from '@/globals/features/authSlice';
 import { useEffect, useState } from 'react';
 import { encrypt } from '@/globals/utils';
 import { AppDispatch } from '@/globals/store';
@@ -40,7 +43,7 @@ const LoginPanel = ({ finish, register }: LoginPanelProps) => {
         if (auth && auth.token) {
             dispatch(setToken(auth.token));
             dispatch(setUser(auth.user));
-            dispatch(setLoginState());
+            dispatch(updateLoginState());
             try {
                 chrome.cookies.set({
                     ...details,

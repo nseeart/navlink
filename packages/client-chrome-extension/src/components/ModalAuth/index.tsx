@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from 'antd';
 import { CloseSmall } from '@icon-park/react';
-import { selectIsLoginVisible, setOpen } from '@/globals/features/globalSlice';
+import {
+    selectIsLoginVisible,
+    setIsLoginVisible,
+} from '@/globals/features/authSlice';
 import LoginPanel from '@/components/LoginPanel';
 import RegisterPanel from '@/components/RegisterPanel';
 import styles from './ModalAuth.module.scss';
@@ -24,19 +27,19 @@ const ModalAuth = () => {
         <Modal width={360} closable={false} open={isLoginVisible} footer={null}>
             <header className={styles['modal-auth-header']}>
                 <h5>{title}</h5>
-                <span onClick={() => dispatch(setOpen(false))}>
+                <span onClick={() => dispatch(setIsLoginVisible(false))}>
                     <CloseSmall theme="filled" size="20" />
                 </span>
             </header>
             {model === 'login' && (
                 <LoginPanel
-                    finish={() => dispatch(setOpen(false))}
+                    finish={() => dispatch(setIsLoginVisible(false))}
                     register={handleRegister}
                 />
             )}
             {model === 'register' && (
                 <RegisterPanel
-                    finish={() => dispatch(setOpen(false))}
+                    finish={() => dispatch(setIsLoginVisible(false))}
                     login={handleLogin}
                 />
             )}

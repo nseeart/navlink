@@ -8,7 +8,9 @@ import ModalSetting from '../components/ModalSetting';
 import ModalPush from '@/components/ModalPush';
 import { useDispatch } from 'react-redux';
 import { setInfo, setVisible } from '@/globals/features/pluginSlice';
+import { setToken } from '@/globals/features/authSlice';
 import { localGet } from '@/globals/utils/chrome';
+import { details } from '@/configs/globals.contants';
 
 const Home: FC = () => {
     const params = {
@@ -24,6 +26,16 @@ const Home: FC = () => {
         console.log('visible get', data);
         dispatch(setVisible(data.visible));
     });
+    try {
+        chrome.cookies.get(details, (cookie: Record<string, string>) => {
+            if (cookie && cookie.value) {
+                console.log('cookie.value===', cookie.value, '=======');
+                dispatch(setToken(cookie.value));
+            }
+        });
+    } catch (error) {
+        console.log('error chrome', error);
+    }
     return (
         <div className="Home">
             <HomeHeader />

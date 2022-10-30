@@ -52,25 +52,12 @@ export const slice = createSlice({
         setInfo: (state, { payload }) => {
             state.info = payload;
         },
-        setUser: (state, { payload }: PayloadAction<any>) => {
-            state.user = payload;
-        },
     },
 });
 
-export const { setVisible, setLoading, setInfo, setUser } = slice.actions;
+export const { setVisible, setLoading, setInfo } = slice.actions;
 
 export default slice.reducer;
 export const selectVisible = (state: RootState) => state.plugin.visible;
 export const selectLoading = (state: RootState) => state.plugin.loading;
 export const selectInfo = (state: RootState) => state.plugin.info;
-export const selectUser = (state: RootState) => state.plugin.user;
-export const selectImgWrapWidth = (state: RootState) => {
-    if (!state.plugin.info?.imgs) {
-        return 0;
-    }
-    return (
-        state.plugin.info.imgs.length * 100 +
-        (state.plugin.info.imgs.length - 1) * 7
-    );
-};

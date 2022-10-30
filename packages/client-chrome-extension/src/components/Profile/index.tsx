@@ -13,20 +13,17 @@ import {
 import { useProfileQuery, useLogoutMutation } from '@/globals/services/authApi';
 import { useCountProfileQuery } from '@/globals/services/countApi';
 import {
-    setToken,
     setUser,
-    selectCurrentToken,
+    setToken,
+    selectToken,
+    updateLoginState,
+    setIsLoginVisible,
 } from '@/globals/features/authSlice';
-import {
-    setLoginState,
-    setIsSettingVisible,
-    setCookie,
-    selectCookie,
-} from '@/globals/features/globalSlice';
+import { setIsSettingVisible } from '@/globals/features/globalSlice';
 import { AppDispatch } from '@/globals/store';
-import { setOpen } from '@/globals/features/globalSlice';
 import styles from './Profile.module.scss';
 import { details } from '@/configs/globals.contants';
+import { cookieGet } from '@/globals/utils/chrome';
 
 const ProfilePopoverHeader = () => {
     const { data: profile } = useProfileQuery();
@@ -72,12 +69,12 @@ const ProfilePopoverContent = () => {
     const handleLogout = () => {
         logout()
             .then(() => {
-                chrome.cookies.remove(details, (cookie) => {
+                chrome.cookies.remove(details, () => {
                     message.success('退出登录');
                     setTimeout(() => {
                         dispatch(setToken(null));
                         dispatch(setUser(null));
-                        dispatch(setLoginState());
+                        dispatch(updateLoginState());
                     }, 200);
                 });
             })
@@ -118,24 +115,28 @@ const ProfilePopoverContent = () => {
 };
 
 const Profile = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
+
     const { data: profile, refetch } = useProfileQuery();
-    const cookie = useSelector(selectCookie);
+    const token = useSelector(selectToken);
     useEffect(() => {
         refetch();
-    }, [cookie]);
+        console.log('profile', profile);
+    }, [token]);
 
-    try {
-        chrome.cookies.get(details, (cookie) => {
-            if (cookie && cookie.value) {
-                console.log('cookie.value===', cookie.value);
-                dispatch(setCookie(cookie.value));
-            }
-        });
-    } catch (error) {}
+    useEffect(() => {
+        console.log('profile =====', profile);
+    }, [profile]);
+
+    cookieGet(details, (cookie) => {
+        if (cookie && cookie.value) {
+            console.log('cookie.value===', cookie.value, '=======');
+            dispatch(setToken(cookie.value));
+        }
+    });
 
     const handleOpenDialogLogin = () => {
-        dispatch(setOpen(true));
+        dispatch(setIsLoginVisible(true));
     };
 
     if (!profile) {

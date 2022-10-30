@@ -20,14 +20,12 @@ import { diffObject, base64toFile } from '@/globals/utils';
 import UploadAvatar from '../UploadAvatar';
 import {
     selectInfo,
-    selectImgWrapWidth,
-    selectUser,
     setInfo,
+    Info,
     selectVisible,
     setVisible,
-    Info,
 } from '@/globals/features/pluginSlice';
-import { selectCookie } from '@/globals/features/globalSlice';
+import { selectToken, selectUser } from '@/globals/features/authSlice';
 import ModalItem from './ModalItem';
 import { details } from '@/configs/globals.contants';
 import { CloseOutlined } from '@ant-design/icons';
@@ -50,9 +48,8 @@ function uploadFile(base64: string): Promise<any> {
 const ModalPush: FC = () => {
     const dispatch = useDispatch();
     const info = useSelector(selectInfo);
-    const cookie = useSelector(selectCookie);
+    const token = useSelector(selectToken);
     const visible = useSelector(selectVisible);
-    const imgWrapWidth = useSelector(selectImgWrapWidth);
     const [loading, setLoading] = useState(false);
     const handleUploadFinish = () => {};
 
@@ -61,8 +58,8 @@ const ModalPush: FC = () => {
     };
 
     const handleOk = async () => {
-        console.log('cookie', cookie);
-        if (!cookie) {
+        console.log('token', token);
+        if (!token) {
             message.warning('您未登录，请点击右上角「登录/注册」按钮！');
             return;
         }

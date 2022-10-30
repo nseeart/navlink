@@ -1,5 +1,3 @@
-// import { RootState } from '@/modules/store';
-import { TOKEN_KEY, details } from '@/configs/globals.contants';
 export default async function prepareHeaders(
     headers: Headers,
     { getState }: { getState: () => any },
