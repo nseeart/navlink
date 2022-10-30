@@ -1,5 +1,5 @@
 {
-    "name": "client-chrome-extension",
+    "name": "@nav.link/client-chrome-extension",
     "private": true,
     "version": "0.0.0",
     "type": "module",
