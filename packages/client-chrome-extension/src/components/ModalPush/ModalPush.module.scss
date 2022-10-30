@@ -1,0 +1,99 @@
+.vue-design-modal-main {
+    height: 230px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.vue-design-modal-item {
+    width: 256px;
+    height: 230px;
+    border-radius: 4px;
+    background-color: #e5eaed;
+}
+.vue-design-modal-title {
+    height: 28px;
+    background-color: #e5eaed;
+    width: 522px;
+    color: #333;
+    display: flex;
+    margin-bottom: 0;
+    border-radius: 14px;
+    padding: 0 4px;
+    dt {
+        height: 28px;
+        width: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+    }
+    dd {
+        flex: 1;
+        overflow: hidden;
+        font-weight: 500;
+        margin-bottom: 0;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        color: #999;
+    }
+}
+.vue-design-modal-info {
+    // margin-left: 16px;
+    position: relative;
+    width: 256px;
+    font-size: 12px;
+    dl {
+        line-height: 24px;
+        display: flex;
+        margin-top: 8px;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    dt {
+        margin-right: 8px;
+        word-break: keep-all;
+        color: #808080;
+        font-weight: 700;
+    }
+    dd {
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0;
+
+        > span {
+            display: flex;
+            height: 24px;
+            line-height: 24px;
+            padding: 0 4px;
+            color: #333;
+            align-items: center;
+        }
+        span,
+        a,
+        p {
+            padding: 0 4px;
+            color: #333;
+        }
+        > p {
+            display: -webkit-box;
+            color: #444;
+            overflow: hidden;
+            -webkit-line-clamp: 4;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            margin-bottom: 0;
+        }
+        > div {
+            height: 24px;
+            overflow: hidden;
+        }
+    }
+}
