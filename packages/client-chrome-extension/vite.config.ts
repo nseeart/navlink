@@ -1,24 +1,24 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { createStyleImportPlugin, AntdResolve } from 'vite-plugin-style-import';
+// import { createStyleImportPlugin, AntdResolve } from 'vite-plugin-style-import';
 
 // https://vitejs.dev/config/
 import { resolve } from 'path';
 export default defineConfig({
     plugins: [
         react(),
-        createStyleImportPlugin({
-            resolves: [AntdResolve()],
-        }),
+        // createStyleImportPlugin({
+        //     resolves: [AntdResolve()],
+        // }),
     ],
-    css: {
-        preprocessorOptions: {
-            less: {
-                // 支持内联 javascript
-                javascriptEnabled: true,
-            },
-        },
-    },
+    // css: {
+    //     preprocessorOptions: {
+    //         less: {
+    //             // 支持内联 javascript
+    //             javascriptEnabled: true,
+    //         },
+    //     },
+    // },
     build: {
         minify: false,
         rollupOptions: {
@@ -46,8 +46,5 @@ export default defineConfig({
         alias: {
             '@/': `${resolve(__dirname, 'src')}/`,
         },
-    },
-    define: {
-        // 'precess.env': {},
     },
 });

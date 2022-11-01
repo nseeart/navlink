@@ -19,8 +19,8 @@ export default defineConfig({
         emptyOutDir: false,
         lib: {
             entry: resolve(__dirname, 'src/content.ts'),
-            name: 'VueDesignContent',
-            fileName: (format) => `vue-design-content.${format}.js`,
+            name: 'NavLinkContent',
+            fileName: (format) => `nav-link-content.${format}.js`,
         },
     },
 });

@@ -2,10 +2,10 @@ import { FC } from 'react';
 import logoImage from '@/assets/images/logo.png';
 import usePopup, { MenuListItem } from './usePopup';
 import styles from './Popup.module.scss';
-import { TagOne, Send } from '@icon-park/react';
+// import { Browser, Send } from '@icon-park/react';
 import { IconRender } from '@/globals/utils/component';
 
-const Popup: FC = () => {
+const PopupApp: FC = () => {
     const { handleNewTab, handleRecommend, menuList } = usePopup();
     const hanldeCommand = ({ key }: MenuListItem) => {
         switch (key) {
@@ -29,13 +29,13 @@ const Popup: FC = () => {
                 <ul>
                     {menuList.map((item) => (
                         <li key={item.key} onClick={() => hanldeCommand(item)}>
-                            <IconRender
-                                map={{ TagOne, Send }}
+                            {/* <IconRender
+                                // map={{ Browser, Send }}
                                 is={item.icon}
                                 theme="outline"
                                 size={18}
                                 fill="#3d7eff"
-                            />
+                            /> */}
                             <span className="text">{item.title}</span>
                         </li>
                     ))}
@@ -45,4 +45,4 @@ const Popup: FC = () => {
     );
 };
 
-export default Popup;
+export default PopupApp;

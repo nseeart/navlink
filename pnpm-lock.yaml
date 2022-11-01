@@ -2734,7 +2734,7 @@ packages:
     dependencies:
       immer: registry.npmmirror.com/immer/9.0.16
       react: registry.npmmirror.com/react/18.2.0
-      react-redux: registry.npmmirror.com/react-redux/8.0.4_5uumaiclxbdbzaqafclbf6maf4
+      react-redux: registry.npmmirror.com/react-redux/8.0.4_nsgh7lqw2e2kb5wanadocemtdi
       redux: registry.npmmirror.com/redux/4.2.0
       redux-thunk: registry.npmmirror.com/redux-thunk/2.4.1_redux@4.2.0
       reselect: registry.npmmirror.com/reselect/4.1.6

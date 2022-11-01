@@ -1,34 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, message, Button, Input } from 'antd';
-import {
-    Home,
-    Close,
-    TagOne,
-    TipsOne,
-    Send,
-    BrowserChrome,
-} from '@icon-park/react';
-import {
-    useProfileQuery,
-    useUpdateProfileMutation,
-} from '@/globals/services/authApi';
+import { Home, Close, TagOne, TipsOne, Send } from '@icon-park/react';
 import { SiteItem } from '@/globals/types/site';
 import styles from './ModalPush.module.scss';
-import { useEffect, FC, useState } from 'react';
-import { debounce } from 'lodash-es';
-import { diffObject, base64toFile } from '@/globals/utils';
+import { FC, useState } from 'react';
+import { base64toFile } from '@/globals/utils';
 import UploadAvatar from '../UploadAvatar';
 import {
     selectInfo,
-    setInfo,
-    Info,
     selectVisible,
     setVisible,
 } from '@/globals/features/pluginSlice';
-import { selectToken, selectUser } from '@/globals/features/authSlice';
+import { selectToken } from '@/globals/features/authSlice';
 import ModalItem from './ModalItem';
-import { details } from '@/configs/globals.contants';
-import { CloseOutlined } from '@ant-design/icons';
 import './style.scss';
 
 function uploadFileData<T = FormData, R = any>(formData: FormData) {
