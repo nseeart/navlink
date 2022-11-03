@@ -12,6 +12,7 @@ import {
     setVisible,
 } from '@/globals/features/pluginSlice';
 import { selectToken } from '@/globals/features/authSlice';
+import { pushSite, usePushSiteMutation } from '@/globals/services/siteApi';
 import ModalItem from './ModalItem';
 import './style.scss';
 
@@ -30,6 +31,7 @@ function uploadFile(base64: string): Promise<any> {
 }
 
 const ModalPush: FC = () => {
+    const [pushSite] = usePushSiteMutation();
     const dispatch = useDispatch();
     const info = useSelector(selectInfo);
     const token = useSelector(selectToken);
@@ -49,6 +51,8 @@ const ModalPush: FC = () => {
         }
         setLoading(true);
         // const { createSite, findSite } = useSite();
+
+        console.log('info', info);
 
         const fileRes = await uploadFile(info.thumbUrl);
 
@@ -70,9 +74,12 @@ const ModalPush: FC = () => {
             views: 0,
             status: 1,
         };
+        pushSite(item).then((res) => {
+            console.log('pushSite res', res);
+        });
         setTimeout(() => {
             setLoading(false);
-        }, 10000);
+        }, 3000);
         console.log(item);
     };
 

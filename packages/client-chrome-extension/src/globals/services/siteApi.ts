@@ -12,6 +12,16 @@ export const siteApi = createApi({
         prepareHeaders,
     }),
     endpoints: (builder) => ({
+        pushSite: builder.mutation<any, Record<string, any>>({
+            query: (body) => {
+                console.log('body', body);
+                return {
+                    url: apis.SITES,
+                    method: 'POST',
+                    body,
+                };
+            },
+        }),
         sites: builder.query<SiteListResponse, Record<string, any>>({
             query: (params = {}) => {
                 return {
@@ -40,5 +50,10 @@ export const siteApi = createApi({
     }),
 });
 
-export const { useSitesQuery, useSiteQuery, useSitesAssociateQuery } = siteApi;
-export const { sites, site, sitesAssociate } = siteApi.endpoints;
+export const {
+    useSitesQuery,
+    useSiteQuery,
+    useSitesAssociateQuery,
+    usePushSiteMutation,
+} = siteApi;
+export const { sites, site, sitesAssociate, pushSite } = siteApi.endpoints;

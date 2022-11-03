@@ -9,14 +9,14 @@ import ModalPush from '@/components/ModalPush';
 import { useDispatch } from 'react-redux';
 import { setInfo, setVisible } from '@/globals/features/pluginSlice';
 import { localGet } from '@/globals/utils/chrome';
-import { AppDispatch } from '@/globals/store';
+import { useAppDispatch } from '@/globals/hooks';
 
 const HomeApp: FC = () => {
     const params = {
         page: 1,
         size: 20,
     };
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     localGet('info', (data: Record<string, any>) => {
         console.log('info get', data);
         dispatch(setInfo(data.info));
