@@ -23,12 +23,14 @@ import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import { ApiTags, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { ensureDirSync } from 'fs-extra';
-import { Request, Response } from 'express';
+import { Request, Response, Express } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { FileListQueryDto, UpdateFieldDto } from './dto/file.dto';
 import { QueryTransformPipe } from '@/core/pipes/queryTransform.pipe';
 import { IPaginationOptions } from '@/globals/services/base.service';
 import { FileEntity } from '@/entities/file.entity';
+import { User } from '@/core/decorators/user.decorator';
+import { get } from 'http';
 
 const md5 = require('md5');
 
@@ -96,10 +98,7 @@ export class FileController {
 
     @Post('upload')
     @UseInterceptors(FileInterceptor('file', uploadOptions))
-    async uploadFile(
-        @UploadedFile() file,
-        @Req() req: Request & { user: { id: number } },
-    ) {
+    async uploadFile(@UploadedFile() file, @User('id') userId: number) {
         console.log('file', file);
         const type = getFileType(file.mimetype);
         const filePath = getFilePath();
@@ -116,7 +115,7 @@ export class FileController {
         );
         console.log('fileRes', fileRes);
         const createFile = {
-            authorId: req.user.id,
+            authorId: userId,
             isShow: 1,
             type,
             originalname: encodeURIComponent(file.originalname),
@@ -134,8 +133,13 @@ export class FileController {
         }
     }
 
-    @Post()
-    create(@Body() createFileDto: CreateFileDto) {
-        return this.fileService.create(createFileDto);
+    @Get('upload')
+    list() {
+        return 'xxxx';
     }
+
+    // @Post()
+    // create(@Body() createFileDto: CreateFileDto) {
+    //     return this.fileService.create(createFileDto);
+    // }
 }

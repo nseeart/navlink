@@ -51,6 +51,7 @@ export class CreateSiteDto {
 
     @ApiProperty({
         description: '代码 url',
+        default: '',
     })
     @IsString()
     codeUrl?: string;

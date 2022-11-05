@@ -26,3 +26,6 @@ export const TOOLS_LIKE = '/tools/like';
 // 配置
 export const CONFIGURES = '/configures';
 export const CONFIGURES_KEY = '/configures/${key}/key';
+
+// 文件
+export const FILES = '/files/upload';

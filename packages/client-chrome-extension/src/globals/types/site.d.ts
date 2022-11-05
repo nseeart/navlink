@@ -21,10 +21,10 @@ export interface SiteItem {
     uuid?: string;
     title: string;
     thumbUrl: string;
-    logoUrl: string;
+    logoUrl?: string;
     iconUrl: string;
     siteUrl: string;
-    codeUrl: string;
+    codeUrl?: string;
     description: string;
     authorId?: number;
     tags: TagList;
