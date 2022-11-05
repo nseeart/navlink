@@ -12,19 +12,19 @@ module.exports = {
         esmExternals: 'loose',
     },
     images: {
-        // domains: ['*.(.*)'],
-        domains: [
-            'js.design',
-            'baidu.com',
-            'lf3-cdn-tos.bytescm.com',
-            'nestjs.com',
-            'webpack.js.org',
-            'vuejs.org',
-            'vitejs.dev',
-            'www.baidu.com',
-            'element-plus.org',
-            'cn.vuejs.org',
-        ],
+        domains: ['*.(.*)'],
+        // domains: [
+        //     'js.design',
+        //     'baidu.com',
+        //     'lf3-cdn-tos.bytescm.com',
+        //     'nestjs.com',
+        //     'webpack.js.org',
+        //     'vuejs.org',
+        //     'vitejs.dev',
+        //     'www.baidu.com',
+        //     'element-plus.org',
+        //     'cn.vuejs.org',
+        // ],
     },
     async rewrites() {
         return [

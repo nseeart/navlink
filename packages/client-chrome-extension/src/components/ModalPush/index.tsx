@@ -1,51 +1,53 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, message, Button, Input } from 'antd';
-import {
-    Home,
-    Close,
-    TagOne,
-    TipsOne,
-    Send,
-    BrowserChrome,
-} from '@icon-park/react';
-import {
-    useProfileQuery,
-    useUpdateProfileMutation,
-} from '@/globals/services/authApi';
+import { Home, Close, TagOne, TipsOne, Send } from '@icon-park/react';
 import { SiteItem } from '@/globals/types/site';
 import styles from './ModalPush.module.scss';
-import { useEffect, FC, useState } from 'react';
-import { debounce } from 'lodash-es';
-import { diffObject, base64toFile } from '@/globals/utils';
+import { FC, useState } from 'react';
+import { base64toFile } from '@/globals/utils';
 import UploadAvatar from '../UploadAvatar';
 import {
     selectInfo,
-    setInfo,
-    Info,
     selectVisible,
     setVisible,
 } from '@/globals/features/pluginSlice';
-import { selectToken, selectUser } from '@/globals/features/authSlice';
+import { selectToken } from '@/globals/features/authSlice';
+import { pushSite, usePushSiteMutation } from '@/globals/services/siteApi';
+import * as apis from '@/configs/apis.contants';
+import { baseURL, details } from '@/configs/globals.contants';
+import { cookieGet } from '@/globals/utils/chrome';
 import ModalItem from './ModalItem';
-import { details } from '@/configs/globals.contants';
-import { CloseOutlined } from '@ant-design/icons';
 import './style.scss';
 
+let token: any = null;
+cookieGet(details, (cookie) => {
+    if (cookie && cookie.value) {
+        token = cookie.value;
+    }
+});
+
 function uploadFileData<T = FormData, R = any>(formData: FormData) {
-    return Promise.resolve(1);
+    const headers = new Headers();
+    headers.set('Authorization', `Bearer ${token}`);
+    return fetch(`${baseURL}${apis.FILES}`, {
+        method: 'POST',
+        headers,
+        body: formData,
+    }).then((res) => res.json());
 }
 
-function uploadFile(base64: string): Promise<any> {
+function uploadFile(base64: string): Promise<Record<string, any> | null> {
     const file = base64toFile(base64);
     if (!file) {
         return Promise.resolve(null);
     }
     const formData: FormData = new FormData();
     formData.append('file', file);
-    return uploadFileData<FormData, any>(formData);
+    return uploadFileData<FormData, Record<string, any>>(formData);
 }
 
 const ModalPush: FC = () => {
+    const [pushSite] = usePushSiteMutation();
     const dispatch = useDispatch();
     const info = useSelector(selectInfo);
     const token = useSelector(selectToken);
@@ -66,17 +68,24 @@ const ModalPush: FC = () => {
         setLoading(true);
         // const { createSite, findSite } = useSite();
 
+        console.log('info', info);
+
         const fileRes = await uploadFile(info.thumbUrl);
+
+        if (!fileRes || !fileRes.path) {
+            message.warning('预览图上传失败！');
+            return;
+        }
 
         console.log('fileRes', fileRes);
 
         const item: SiteItem = {
-            codeUrl: info.codeUrl,
+            codeUrl: '',
             collections: 0,
             description: info.description,
             down: 0,
             iconUrl: info.favIconUrl,
-            logoUrl: info.logoUrl,
+            logoUrl: info.logoUrl || '',
             siteUrl: info.siteUrl,
             tags: info.tags.map((i) => ({ name: i })),
             thumbUrl: fileRes.path,
@@ -86,13 +95,13 @@ const ModalPush: FC = () => {
             views: 0,
             status: 1,
         };
-        setTimeout(() => {
-            setLoading(false);
-        }, 10000);
-        console.log(item);
+        pushSite(item)
+            .then((res) => {
+                message.success('推荐成功！');
+                dispatch(setVisible(false));
+            })
+            .finally(() => setLoading(false));
     };
-
-    console.log('Modal info', info);
     return (
         <Modal
             wrapClassName="vue-design-modal-push"

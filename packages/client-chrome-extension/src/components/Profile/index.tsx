@@ -124,13 +124,9 @@ const Profile = () => {
         console.log('profile', profile);
     }, [token]);
 
-    useEffect(() => {
-        console.log('profile =====', profile);
-    }, [profile]);
-
     cookieGet(details, (cookie) => {
         if (cookie && cookie.value) {
-            console.log('cookie.value===', cookie.value, '=======');
+            console.log('cookieGet===', cookie.value);
             dispatch(setToken(cookie.value));
         }
     });

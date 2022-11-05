@@ -1,6 +1,7 @@
 import styles from './Footer.module.scss';
 import logoImage from '@/assets/images/logo.png';
 import { useConfiguresQuery } from '@/globals/services/configureApi';
+// import { useAppSelector, useAppDispatch } from '@/globals/hooks';
 
 type PropItem = Record<string, string>;
 const Footer = () => {

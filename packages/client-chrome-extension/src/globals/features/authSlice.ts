@@ -28,8 +28,6 @@ const slice = createSlice({
             state.isLoginVisible = payload;
         },
         setToken: (state, { payload }: PayloadAction<string | null>) => {
-            debugger;
-            console.log('setToken payload', payload);
             state.token = payload;
         },
         updateLoginState: (state) => {

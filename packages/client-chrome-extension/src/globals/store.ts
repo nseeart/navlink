@@ -21,9 +21,9 @@ export const store = configureStore({
         [tagApi.reducerPath]: tagApi.reducer,
         [configureApi.reducerPath]: configureApi.reducer,
         auth: authReducer,
-        site: siteReducer,
         global: globalReducer,
         plugin: pluginReducer,
+        site: siteReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(

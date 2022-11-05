@@ -6,7 +6,7 @@ export const MessageType = {
 };
 
 export const ContentModal = {
-    SCRIPT_FILES: ['vue-design-content.umd.js'],
+    SCRIPT_FILES: ['nav-link-content.umd.js'],
 };
 
 export const Pages = {
