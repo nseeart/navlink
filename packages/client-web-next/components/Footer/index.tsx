@@ -21,11 +21,12 @@ const Footer = () => {
                         <Link href={'#'}>
                             <a>
                                 <Image
-                                    src={logoImage}
+                                    src={'/favicon/nav_64.png'}
                                     alt=""
-                                    width={224}
-                                    height={38}
+                                    width={32}
+                                    height={32}
                                 />
+                                <span>.link</span>
                             </a>
                         </Link>
                     </div>

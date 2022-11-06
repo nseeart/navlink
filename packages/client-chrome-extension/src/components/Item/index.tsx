@@ -1,7 +1,7 @@
 import { GithubOne, Home, Star, ThumbsUp, ThumbsDown } from '@icon-park/react';
 import type { SiteItem, Tool } from '@/globals/types/site';
 import styles from './Item.module.scss';
-import { typeMap } from '@/configs/globals.contants';
+import { typeMap, SITE_DOMAIN } from '@/configs/globals.contants';
 
 type ToolType = 'top' | 'down' | 'collections';
 type ThemeType = 'filled' | 'outline';
@@ -26,7 +26,7 @@ const Item = (props: SiteItem) => {
                 <div className={styles.thumb}>
                     {props.uuid && (
                         <a
-                            href={`/sites/${props.uuid}`}
+                            href={`${SITE_DOMAIN}/sites/${props.uuid}`}
                             style={{
                                 backgroundImage: props.thumbUrl
                                     ? `url('${props.thumbUrl}')`

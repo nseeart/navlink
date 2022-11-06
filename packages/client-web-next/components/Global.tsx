@@ -11,17 +11,22 @@ const Global: FC = () => {
                     rel="icon"
                     type="image/png"
                     sizes="16x16"
-                    href="/favicon/vuedesign_16.png"></link>
+                    href="/favicon/nav_16.png"></link>
                 <link
                     rel="icon"
                     type="image/png"
                     sizes="32x32"
-                    href="/favicon/vuedesign_32.png"></link>
+                    href="/favicon/nav_32.png"></link>
                 <link
                     rel="icon"
                     type="image/png"
                     sizes="48x48"
-                    href="/favicon/vuedesign_48.png"></link>
+                    href="/favicon/nav_48.png"></link>
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="48x48"
+                    href="/favicon/nav_64.png"></link>
             </Head>
             <ModalAuth />
             <ModalSetting />

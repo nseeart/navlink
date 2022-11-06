@@ -43,10 +43,10 @@ const Top = () => {
                                 className={styles.logo}
                                 onClick={handleGotoHome}>
                                 <Image
-                                    src={logoImage}
+                                    src={'/favicon/nav_48.png'}
                                     alt=""
-                                    width={224}
-                                    height={38}
+                                    width={24}
+                                    height={24}
                                 />
                             </h1>
                         </li>

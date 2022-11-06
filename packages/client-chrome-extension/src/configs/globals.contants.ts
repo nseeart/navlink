@@ -1,11 +1,12 @@
 export const SUCCESS_STATUS_CODE = 0;
 export const ERROR_STATUS_CODE = 1;
 export const TOKEN_KEY = 'VUE_DESIGN_TOKEN';
-export const baseURL = 'http://127.0.0.1:8083/api/v1';
+export const SITE_DOMAIN = 'http://localhost:3004';
+export const baseURL = `${SITE_DOMAIN}/api/v1`;
 
 export const details = {
     name: 'token',
-    url: 'http://localhost:3004',
+    url: SITE_DOMAIN,
 };
 
 export type TypeItem = {
