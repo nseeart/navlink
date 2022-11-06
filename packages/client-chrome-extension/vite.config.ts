@@ -1,11 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { createStyleImportPlugin, AntdResolve } from 'vite-plugin-style-import';
+import { viteRequire } from 'vite-require';
 
 // https://vitejs.dev/config/
 import { resolve } from 'path';
 export default defineConfig({
     plugins: [
+        viteRequire({
+            extensions: ['.ts'],
+        }),
         react(),
         createStyleImportPlugin({
             resolves: [AntdResolve()],
@@ -45,6 +49,11 @@ export default defineConfig({
     resolve: {
         alias: {
             '@/': `${resolve(__dirname, 'src')}/`,
+        },
+    },
+    define: {
+        'process.env': {
+            npm_package_version: process.env.npm_package_version,
         },
     },
 });

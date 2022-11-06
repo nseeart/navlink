@@ -39,6 +39,9 @@ export type BufferJSON = {
 };
 
 export function encrypt(data: string, publicKeyJSON?: BufferJSON): string {
+    if (typeof window === 'undefined' || !publicKeyJSON) {
+        return '';
+    }
     const JSEncrypt = require('jsencrypt').default;
     const publicKey = Buffer.from(publicKeyJSON?.data || []).toString();
     const encrypt = new JSEncrypt();
