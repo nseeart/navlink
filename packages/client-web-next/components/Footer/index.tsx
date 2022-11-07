@@ -18,15 +18,14 @@ const Footer = () => {
             <div className={styles.inner}>
                 <div className={styles.about}>
                     <div className={styles.logo}>
-                        <Link href={'#'}>
+                        <Link href={'/'}>
                             <a>
                                 <Image
                                     src={'/favicon/nav_64.png'}
                                     alt=""
-                                    width={32}
-                                    height={32}
+                                    width={40}
+                                    height={40}
                                 />
-                                <span>.link</span>
                             </a>
                         </Link>
                     </div>
@@ -44,6 +43,7 @@ const Footer = () => {
                         )}
                         {icp && (
                             <div className={styles.copyright}>
+                                <span>nav.link</span>
                                 <Link href={icp.link || '#'}>
                                     <a>{icp.value}</a>
                                 </Link>
