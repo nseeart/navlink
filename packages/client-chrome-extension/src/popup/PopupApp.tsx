@@ -2,7 +2,7 @@ import { FC } from 'react';
 import logoImage from '@/assets/images/logo.png';
 import usePopup, { MenuListItem } from './usePopup';
 import styles from './Popup.module.scss';
-// import { Browser, Send } from '@icon-park/react';
+import { Browser, Send } from '@icon-park/react';
 import { IconRender } from '@/globals/utils/component';
 
 const PopupApp: FC = () => {
@@ -20,22 +20,23 @@ const PopupApp: FC = () => {
         }
     };
     return (
-        <div className={styles['vue-design-popup']}>
-            <header className={styles['vue-design-popup-header']}>
-                <img src={logoImage} />
-                <span>专注前端开发者</span>
+        <div className={styles['nav-link-popup']}>
+            <header className={styles['nav-link-popup-header']}>
+                <img src={'/assets/images/nav_48.png'} />
+                <span className={styles.en}>av.Link</span>
+                <span className={styles.zh}>导航链接</span>
             </header>
-            <footer className={styles['vue-design-popup-content']}>
+            <footer className={styles['nav-link-popup-content']}>
                 <ul>
                     {menuList.map((item) => (
                         <li key={item.key} onClick={() => hanldeCommand(item)}>
-                            {/* <IconRender
-                                // map={{ Browser, Send }}
+                            <IconRender
+                                map={{ Browser, Send }}
                                 is={item.icon}
                                 theme="outline"
                                 size={18}
                                 fill="#3d7eff"
-                            /> */}
+                            />
                             <span className="text">{item.title}</span>
                         </li>
                     ))}
