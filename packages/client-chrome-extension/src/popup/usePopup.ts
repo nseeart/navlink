@@ -40,7 +40,7 @@ const menuList: Array<MenuListItem> = [
     {
         key: 'new_tab',
         title: '打开新标签页',
-        icon: 'TagOne',
+        icon: 'Browser',
     },
     {
         key: 'recommend',

@@ -10,38 +10,53 @@ li {
     list-style: none;
 }
 
-.vue-design-popup {
+.nav-link-popup {
     width: 200px;
-    min-height: 160px;
     height: auto;
 }
 
-.vue-design-popup-header {
+.nav-link-popup-header {
     padding: 8px 16px;
     background-color: #fff;
     border-bottom: 1px solid #e5eaed;
     height: auto;
+    display: flex;
 }
 
-.vue-design-popup-header span {
+.nav-link-popup-header span {
     display: block;
-    font-size: 12px;
+
     font-weight: 700;
-    color: #999;
+    color: #333;
+    &.en {
+        height: 18px;
+        color: #3d7eff;
+        line-height: 19px;
+        font-size: 18px;
+        margin-top: 2px;
+        margin-left: 2px;
+    }
+    &.zh {
+        font-size: 15px;
+        margin-left: 8px;
+        margin-top: 3px;
+    }
 }
 
-.vue-design-popup-header img {
+.nav-link-popup-header img {
     height: auto;
     width: 100%;
     display: block;
+    width: 18px;
+    height: 18px;
 }
 
-.vue-design-popup-img {
+.nav-link-popup-img {
     width: 100%;
     height: auto;
 }
 
-.vue-design-popup-content {
+.nav-link-popup-content {
     width: 100%;
     padding: 16px 0;
     ul {

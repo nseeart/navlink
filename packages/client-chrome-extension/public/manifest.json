@@ -11,17 +11,17 @@
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
-            "16": "/assets/images/logo_16.png",
-            "32": "/assets/images/logo_32.png",
-            "48": "/assets/images/logo_48.png",
-            "128": "/assets/images/logo_64.png"
+            "16": "/assets/images/nav_16.png",
+            "32": "/assets/images/nav_32.png",
+            "48": "/assets/images/nav_48.png",
+            "128": "/assets/images/nav_64.png"
         }
     },
     "icons": {
-        "16": "/assets/images/logo_16.png",
-        "32": "/assets/images/logo_32.png",
-        "48": "/assets/images/logo_48.png",
-        "128": "/assets/images/logo_64.png"
+        "16": "/assets/images/nav_16.png",
+        "32": "/assets/images/nav_32.png",
+        "48": "/assets/images/nav_48.png",
+        "128": "/assets/images/nav_64.png"
     },
     "options_page": "options.html",
     "externally_connectable": {

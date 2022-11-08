@@ -13,6 +13,9 @@
 
 .nav {
     margin: 0;
+    h1 {
+        cursor: pointer;
+    }
     a {
         color: rgba(184, 184, 184, 1);
         font-size: 16px;
@@ -105,14 +108,21 @@
 
 .logo {
     margin: 0;
-    height: 24px;
-    line-height: 24px;
-    width: 136px;
+    height: 32px;
+    line-height: 32px;
+    width: auto;
 
     img {
         display: block;
         height: 24px;
-        width: 136px;
+        width: 24px;
+    }
+
+    span {
+        font-size: 20px;
+        color: #3d7eff;
+        vertical-align: bottom;
+        margin-left: 8px;
     }
 }
 
