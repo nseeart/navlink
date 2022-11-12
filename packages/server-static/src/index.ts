@@ -1,21 +1,26 @@
-import { Server, version, mime } from 'node-static';
+import { Server } from 'node-static';
 import { createServer } from 'http';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import pico from 'picocolors';
+import { config } from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const serverRoot = resolve(__dirname, '..', '..', '..', 'uploads');
-const fileServer = new Server(serverRoot, {
+const path = resolve(__dirname, '..', 'envs', `.env.${process.env.NODE_ENV}`);
+config({ debug: true, path });
+
+const staticRootDir = resolve(__dirname, '..', '..', '..', 'uploads');
+const fileServer = new Server(staticRootDir, {
     cache: 7200,
-    headers: { 'X-Hello': 'World!' },
+    headers: { 'X-nav': 'link' },
 });
 const PORT = process.env.PORT || 8088;
+const HOST = process.env.HOST || 'http://127.0.0.1';
 
 console.log(
     `${pico.blue(pico.bold('[server-static]'))} ${pico.green(
-        `root path: ${serverRoot}`,
+        `root path: ${staticRootDir}`,
     )}`,
 );
 
@@ -32,7 +37,6 @@ createServer((request, response) => {
                     response.writeHead(err.status, err.headers);
                     response.end();
                 } else {
-                    // The file was served successfully
                     console.log(
                         `${pico.blue(
                             pico.bold('[server-static]'),
@@ -45,6 +49,6 @@ createServer((request, response) => {
 }).listen(PORT);
 console.log(
     `${pico.yellow(pico.bold('[server-static]'))} ${pico.yellow(
-        `is listening on http://127.0.0.1:${PORT}`,
+        `is listening on ${HOST}:${PORT}`,
     )}`,
 );

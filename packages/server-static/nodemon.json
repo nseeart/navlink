@@ -1,0 +1,10 @@
+{
+    "ignore": [".git", "node_modules/**/node_modules"],
+    "verbose": true,
+    "execMap": {
+        "ts": "ts-node"
+    },
+    "exec": "npx ts-node src/index.ts",
+    "watch": ["src", "envs"],
+    "ext": "ts"
+}
