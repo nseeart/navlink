@@ -4,7 +4,6 @@
     "execMap": {
         "ts": "ts-node"
     },
-    "exec": "npx ts-node src/index.ts",
-    "watch": ["src", "envs"],
-    "ext": "ts"
+    "exec": ["ts-node src/index.ts"],
+    "watch": ["src", "envs"]
 }

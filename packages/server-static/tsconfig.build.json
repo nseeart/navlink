@@ -2,7 +2,11 @@
     "extends": "./tsconfig.json",
     "exclude": ["node_modules", "test", "dist"],
     "compilerOptions": {
-        "moduleResolution": "NodeNext",
-        "module": "ESNext"
-    }
+        "noEmit": false,
+        "rootDir": "src",
+        "outDir": "dist",
+        "allowJs": false,
+        "rootDirs": ["."]
+    },
+    "include": ["src/**/*"]
 }

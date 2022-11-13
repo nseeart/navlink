@@ -8,7 +8,8 @@
         "dev:dev": "cross-env NODE_ENV=development nodemon src/index.ts",
         "dev:test": "cross-env NODE_ENV=test nodemon src/index.ts",
         "dev:prod": "cross-env NODE_ENV=production nodemon src/index.ts",
-        "build:prod": "cross-env NODE_ENV=production vite build"
+        "build:prod": "cross-env NODE_ENV=production tsc -b ./tsconfig.build.json",
+        "start:prod": "cross-env NODE_ENV=production node dist/index.js"
     },
     "keywords": [],
     "author": "",
@@ -21,6 +22,7 @@
     "devDependencies": {
         "@types/node": "^18.11.9",
         "cross-env": "^7.0.3",
+        "http-proxy": "^1.18.1",
         "nodemon": "^2.0.20",
         "ts-node": "^10.9.1",
         "typescript": "^4.8.4",
