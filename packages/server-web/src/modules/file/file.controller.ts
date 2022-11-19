@@ -20,7 +20,7 @@ import { CreateFileDto } from './dto/create-file.dto';
 import { UpdateFileDto } from './dto/update-file.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { extname, join } from 'path';
+import { extname, join, resolve } from 'path';
 import { ApiTags, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { ensureDirSync } from 'fs-extra';
 import { Request, Response, Express } from 'express';
@@ -30,13 +30,8 @@ import { QueryTransformPipe } from '@/core/pipes/queryTransform.pipe';
 import { IPaginationOptions } from '@/globals/services/base.service';
 import { FileEntity } from '@/entities/file.entity';
 import { User } from '@/core/decorators/user.decorator';
-import { get } from 'http';
 
 const md5 = require('md5');
-
-function resolve(dir) {
-    return join(__dirname, dir);
-}
 
 function getFilePath() {
     const dt = new Date();
@@ -58,8 +53,15 @@ function getExtname(mimetype: string): string {
 const uploadOptions = {
     storage: diskStorage({
         destination: (req, file, cb) => {
-            const filePath = join('uploads', 'images');
-            const destPath = resolve(`../../../${filePath}`);
+            const destPath = resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'uploads',
+                'images',
+            );
+            console.log('destPath', destPath);
             ensureDirSync(destPath);
             cb(null, destPath);
         },
