@@ -14,10 +14,11 @@
 .nav {
     margin: 0;
     a {
-        color: rgba(184, 184, 184, 1);
+        color: #eee;
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 600;
         text-decoration: none;
+        display: flex;
     }
 
     display: flex;
@@ -31,11 +32,12 @@
                 color: rgba(61, 126, 255, 1);
             }
         }
+        &.active {
+            a {
+                color: rgba(61, 126, 255, 1);
+            }
+        }
     }
-}
-
-.nav li.active a {
-    color: rgba(61, 126, 255, 1);
 }
 
 .user {
@@ -105,14 +107,18 @@
 
 .logo {
     margin: 0;
-    height: 24px;
-    line-height: 24px;
-    width: 136px;
-
+    height: 20px;
+    line-height: 20px;
+    width: auto;
+    span {
+        font-size: 20px;
+        margin-left: 6px;
+        color: #3d7eff;
+    }
     img {
         display: block;
-        height: 24px;
-        width: 136px;
+        height: 20px;
+        width: 20px;
     }
 }
 

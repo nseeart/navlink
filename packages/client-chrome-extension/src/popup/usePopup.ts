@@ -44,7 +44,7 @@ const menuList: Array<MenuListItem> = [
     },
     {
         key: 'recommend',
-        title: '推荐到nav.link',
+        title: '推荐到导航',
         icon: 'Send',
     },
 ];

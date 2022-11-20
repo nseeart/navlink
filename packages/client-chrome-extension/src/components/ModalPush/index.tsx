@@ -11,11 +11,12 @@ import {
     selectVisible,
     setVisible,
 } from '@/globals/features/pluginSlice';
-import { selectToken } from '@/globals/features/authSlice';
+import { selectToken, updateLoginState } from '@/globals/features/authSlice';
 import { pushSite, usePushSiteMutation } from '@/globals/services/siteApi';
 import * as apis from '@/configs/apis.contants';
 import { baseURL, details } from '@/configs/globals.contants';
 import { cookieGet } from '@/globals/utils/chrome';
+import { stringTruncated } from '@/globals/utils';
 import ModalItem from './ModalItem';
 import './style.scss';
 
@@ -78,18 +79,17 @@ const ModalPush: FC = () => {
         }
 
         console.log('fileRes', fileRes);
-
         const item: SiteItem = {
             codeUrl: '',
             collections: 0,
-            description: info.description,
+            description: stringTruncated(info.description, 250),
             down: 0,
             iconUrl: info.favIconUrl,
             logoUrl: info.logoUrl || '',
             siteUrl: info.siteUrl,
             tags: info.tags.map((i) => ({ name: i })),
             thumbUrl: fileRes.path,
-            title: info.title,
+            title: stringTruncated(info.title, 150),
             top: 0,
             type: info.type || 'site',
             views: 0,
@@ -99,6 +99,7 @@ const ModalPush: FC = () => {
             .then((res) => {
                 message.success('推荐成功！');
                 dispatch(setVisible(false));
+                dispatch(updateLoginState());
             })
             .finally(() => setLoading(false));
     };
