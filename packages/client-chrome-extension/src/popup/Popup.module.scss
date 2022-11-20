@@ -16,7 +16,7 @@ li {
 }
 
 .nav-link-popup-header {
-    padding: 8px 16px;
+    padding: 10px 16px;
     background-color: #fff;
     border-bottom: 1px solid #e5eaed;
     height: auto;
@@ -26,12 +26,12 @@ li {
 .nav-link-popup-header span {
     display: block;
 
-    font-weight: 700;
+    font-weight: 500;
     color: #333;
     &.zh {
-        font-size: 18px;
+        font-size: 16px;
         margin-left: 5px;
-        line-height: 18px;
+        line-height: 16px;
     }
 }
 
@@ -39,8 +39,8 @@ li {
     height: auto;
     width: 100%;
     display: block;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 .nav-link-popup-img {
