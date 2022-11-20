@@ -23,7 +23,7 @@ const PopupApp: FC = () => {
         <div className={styles['nav-link-popup']}>
             <header className={styles['nav-link-popup-header']}>
                 <img src={'/assets/images/nav_48.png'} />
-                <span className={styles.zh}>导航</span>
+                <span className={styles.zh}>链接导航</span>
             </header>
             <footer className={styles['nav-link-popup-content']}>
                 <ul>

@@ -40,7 +40,7 @@ const Top = () => {
                                         width={20}
                                         height={20}
                                     />
-                                    <span>导航</span>
+                                    <span>链接导航</span>
                                 </a>
                             </h1>
                         </li>
