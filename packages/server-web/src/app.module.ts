@@ -13,15 +13,17 @@ import { UserModule } from './modules/user/user.module';
 import { ToolModule } from './modules/tool/tool.module';
 import { ConfigureModule } from './modules/configure/configure.module';
 import { FileModule } from '@/modules/file/file.module';
-import microservicesConfig from '@/configs/microservices.config';
 import globalConfig from '@/configs/global.config';
 import rsaConfig from '@/configs/rsa.config';
+
+const env = process.env.NODE_ENV || 'dev';
 
 @Module({
     imports: [
         ConfigModule.forRoot({
             isGlobal: true,
-            load: [globalConfig, microservicesConfig, rsaConfig],
+            load: [globalConfig, rsaConfig],
+            envFilePath: `.env.${env}`,
         }),
         CacheModule.register({
             isGlobal: true,
