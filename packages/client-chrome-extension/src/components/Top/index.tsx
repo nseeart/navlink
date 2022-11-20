@@ -1,5 +1,5 @@
 import { UploadOne } from '@icon-park/react';
-import logoImage from '@/assets/images/logo.png';
+// import logoImage from '@/assets/images/logo.png';
 import styles from './Top.module.scss';
 import Profile from '../Profile';
 import { details } from '@/configs/globals.contants';
@@ -35,11 +35,12 @@ const Top = () => {
                             <h1 className={styles.logo}>
                                 <a href={details.url}>
                                     <img
-                                        src={logoImage}
+                                        src={'/assets/images/nav_48.png'}
                                         alt=""
-                                        width={224}
-                                        height={38}
+                                        width={20}
+                                        height={20}
                                     />
+                                    <span>链接导航</span>
                                 </a>
                             </h1>
                         </li>

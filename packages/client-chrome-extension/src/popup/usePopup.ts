@@ -44,7 +44,7 @@ const menuList: Array<MenuListItem> = [
     },
     {
         key: 'recommend',
-        title: '推荐到vue.design',
+        title: '推荐到链接导航',
         icon: 'Send',
     },
 ];

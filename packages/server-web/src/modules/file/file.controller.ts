@@ -20,33 +20,22 @@ import { CreateFileDto } from './dto/create-file.dto';
 import { UpdateFileDto } from './dto/update-file.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { extname, join } from 'path';
-import { ApiTags, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { extname, join, resolve } from 'path';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { ensureDirSync } from 'fs-extra';
-import { Request, Response, Express } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { FileListQueryDto, UpdateFieldDto } from './dto/file.dto';
-import { QueryTransformPipe } from '@/core/pipes/queryTransform.pipe';
-import { IPaginationOptions } from '@/globals/services/base.service';
-import { FileEntity } from '@/entities/file.entity';
 import { User } from '@/core/decorators/user.decorator';
-import { get } from 'http';
-
-const md5 = require('md5');
-
-function resolve(dir) {
-    return join(__dirname, dir);
-}
+import { ConfigService } from '@nestjs/config';
 
 function getFilePath() {
     const dt = new Date();
     const month = dt.getMonth() + 1;
-    const day = dt.getDay();
+    const date = dt.getDate();
     return join(
         'images',
         `${dt.getFullYear()}`,
         `${month < 10 ? '0' + month : month}`,
-        `${day < 10 ? '0' + day : day}`,
+        `${date < 10 ? '0' + date : date}`,
     );
 }
 
@@ -55,11 +44,21 @@ function getExtname(mimetype: string): string {
     return `.${ext}`;
 }
 
+const uploadFileRoot = resolve(
+    __dirname,
+    '..',
+    '..',
+    '..',
+    '..',
+    '..',
+    'uploads',
+);
+const filePath = getFilePath();
+
 const uploadOptions = {
     storage: diskStorage({
         destination: (req, file, cb) => {
-            const filePath = join('uploads', 'images');
-            const destPath = resolve(`../../../${filePath}`);
+            const destPath = resolve(uploadFileRoot, filePath);
             ensureDirSync(destPath);
             cb(null, destPath);
         },
@@ -94,40 +93,44 @@ export class FileController {
         private readonly fileService: FileService,
         private readonly ossService: OssService,
         private readonly qiniuService: QiniuService,
-    ) {}
+        private readonly configService: ConfigService,
+    ) {
+        console.log('configService', this.configService.get('STATIC_HOST'));
+        console.log('configService', process.env.NODE_NEV);
+    }
 
     @Post('upload')
     @UseInterceptors(FileInterceptor('file', uploadOptions))
     async uploadFile(@UploadedFile() file, @User('id') userId: number) {
-        console.log('file', file);
+        const staticDomain = this.configService.get('STATIC_DOMAIN');
         const type = getFileType(file.mimetype);
-        const filePath = getFilePath();
         const ossfilename = join(filePath, `${file.filename}`);
         const destfilename = join(file.destination, `${file.filename}`);
+        const path = join(staticDomain, ossfilename);
         console.log('ossfilename', ossfilename);
         console.log('destfilename', destfilename);
-        const fileRes = await this.qiniuService.putOssFile(
-            ossfilename,
-            destfilename,
-            {
-                mime: file.mimetype,
-            },
-        );
-        console.log('fileRes', fileRes);
+        console.log('path', path);
+        // const fileRes = await this.qiniuService.putOssFile(
+        //     ossfilename,
+        //     destfilename,
+        //     {
+        //         mime: file.mimetype,
+        //     },
+        // );
+        // console.log('fileRes', fileRes);
+
         const createFile = {
             authorId: userId,
             isShow: 1,
             type,
             originalname: encodeURIComponent(file.originalname),
             mimetype: file.mimetype,
-            path: `${fileRes.localhost}/${fileRes.key}`,
+            path,
             filename: file.filename,
             size: file.size,
         };
         const createRes = await this.fileService.create(createFile);
         console.log('upload == res', createRes);
-        // res.send(createRes);
-        // res.json(createRes);
         if (createRes) {
             return createRes;
         }

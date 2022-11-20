@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "esnext",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true,
+        "moduleResolution": "NodeNext",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "ts-node": {
+        "esm": true
+    }
+}

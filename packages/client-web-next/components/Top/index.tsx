@@ -43,12 +43,12 @@ const Top = () => {
                                 className={styles.logo}
                                 onClick={handleGotoHome}>
                                 <Image
-                                    src={'/favicon/nav_64.png'}
+                                    src={'/favicon/nav_48.png'}
                                     alt=""
-                                    width={32}
-                                    height={32}
+                                    width={20}
+                                    height={20}
                                 />
-                                <span>Nav.Link</span>
+                                <span>链接导航</span>
                             </h1>
                         </li>
                         {navList.map((item, index) => (

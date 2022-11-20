@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '@/modules/store';
+import type { AppState } from '@/globals/store';
 
 export interface GlobalState {
     isLoginVisible: boolean;
@@ -39,9 +39,9 @@ export const { setOpen, setCookie, setLoginState, setIsSettingVisible } =
     slice.actions;
 
 export default slice.reducer;
-export const selectIsLoginVisible = (state: RootState) =>
+export const selectIsLoginVisible = (state: AppState) =>
     state.global.isLoginVisible;
-export const selectCookie = (state: RootState) => state.global.cookie;
-export const selectLoginState = (state: RootState) => state.global.loginState;
-export const selectIsSettingVisible = (state: RootState) =>
+export const selectCookie = (state: AppState) => state.global.cookie;
+export const selectLoginState = (state: AppState) => state.global.loginState;
+export const selectIsSettingVisible = (state: AppState) =>
     state.global.isSettingVisible;

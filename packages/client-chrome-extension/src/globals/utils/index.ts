@@ -78,3 +78,15 @@ export function base64toFile(base64Data: string): Blob | null {
     }
     return new Blob([ab], { type: fileType });
 }
+
+/**
+ * 字符串截断
+ * @param text
+ * @param len
+ */
+export function stringTruncated(text: string, len: number): string {
+    if (!text) {
+        return '';
+    }
+    return text.length > len ? text.slice(0, len) : text;
+}

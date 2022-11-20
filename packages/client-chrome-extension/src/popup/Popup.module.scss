@@ -16,7 +16,7 @@ li {
 }
 
 .nav-link-popup-header {
-    padding: 8px 16px;
+    padding: 10px 16px;
     background-color: #fff;
     border-bottom: 1px solid #e5eaed;
     height: auto;
@@ -26,20 +26,12 @@ li {
 .nav-link-popup-header span {
     display: block;
 
-    font-weight: 700;
+    font-weight: 500;
     color: #333;
-    &.en {
-        height: 18px;
-        color: #3d7eff;
-        line-height: 19px;
-        font-size: 18px;
-        margin-top: 2px;
-        margin-left: 2px;
-    }
     &.zh {
-        font-size: 15px;
-        margin-left: 8px;
-        margin-top: 3px;
+        font-size: 16px;
+        margin-left: 5px;
+        line-height: 16px;
     }
 }
 
@@ -47,8 +39,8 @@ li {
     height: auto;
     width: 100%;
     display: block;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 .nav-link-popup-img {
