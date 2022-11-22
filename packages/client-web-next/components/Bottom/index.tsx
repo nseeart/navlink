@@ -7,7 +7,7 @@ import Link from 'next/link';
 const Bottom = () => {
     const { data: tags } = useTagsQuery();
     const { data: users } = useUsersQuery({
-        size: 6,
+        size: 12,
     });
     const tagList = tags?.list || [];
     const userList = users?.list || [];

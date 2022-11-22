@@ -6,12 +6,10 @@ import { useUsersQuery } from '@/globals/services/userApi';
 const Bottom = () => {
     const { data: tags } = useTagsQuery();
     const { data: users } = useUsersQuery({
-        size: 6,
+        size: 12,
     });
     const tagList = tags?.list || [];
     const userList = users?.list || [];
-    console.log('users', userList);
-    console.log('tags', tagList);
     return (
         <div className={styles.container}>
             <div className={styles.inner}>
