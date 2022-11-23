@@ -86,7 +86,7 @@ const Page: NextPage<PageProps> = ({ pageName }) => {
     return (
         <div className={styles.container} style={containerStyle}>
             <Head>
-                <title>{`${detail.value} - vue.design`}</title>
+                <title>{`${detail.value} - nav.link`}</title>
                 <meta name="description" content={detail.remark} />
             </Head>
             <Header headerStyle={headerStyle} />

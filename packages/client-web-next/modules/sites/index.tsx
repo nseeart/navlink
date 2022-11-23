@@ -42,7 +42,7 @@ const Sites: NextPage<SitesProps> = ({ params }: SitesProps) => {
     return (
         <div className={styles.container} style={containerStyle}>
             <Head>
-                <title>{'发现 - vue.design'}</title>
+                <title>{'发现 - nav.link'}</title>
                 <meta
                     name="description"
                     content="一个能一键分享前端资源（网站、代码、工具、文章）、发现前端资源的导航平台。"

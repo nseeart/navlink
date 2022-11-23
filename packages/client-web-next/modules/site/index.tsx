@@ -46,7 +46,7 @@ const Site: NextPage<SiteProps> = ({ uuid }: SiteProps) => {
     return (
         <div className={styles.container} style={containerStyle}>
             <Head>
-                <title>{`${detail.title} - vue.design`}</title>
+                <title>{`${detail.title} - nav.link`}</title>
                 <meta name="description" content={detail.description} />
             </Head>
             <Header headerStyle={headerStyle} />

@@ -94,12 +94,16 @@ const Tools = ({ uuid }: SiteProps) => {
     };
 
     useEffect(() => {
+        console.log('tool', tool);
+        if (!tool) {
+            return;
+        }
         setBadges({
-            top: detail.top,
-            down: detail.down,
-            collections: detail.collections,
+            top: tool.top,
+            down: tool.down,
+            collections: tool.collections,
         });
-    }, [detail]);
+    }, [tool]);
 
     const isTool = (type: TooItemType) => {
         if (!tool) {
