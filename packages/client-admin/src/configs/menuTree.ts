@@ -24,6 +24,11 @@ export default <MenuNode[]>[
                 value: 'navigation',
                 icon: 'Navigation',
             },
+            {
+                label: '标签管理',
+                value: 'tag',
+                icon: 'TagOne',
+            },
         ],
     },
     {
@@ -38,11 +43,7 @@ export default <MenuNode[]>[
                 active: true,
                 icon: 'User',
             },
-            {
-                label: '标签管理',
-                value: 'tag',
-                icon: 'TagOne',
-            },
+
             {
                 label: '文件管理',
                 value: 'file',
