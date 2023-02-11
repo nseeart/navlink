@@ -79,11 +79,12 @@ const ProfilePopoverContent = () => {
                             subscribe: false,
                             forceRefetch: true,
                         }),
-                    );
-                    dispatch(setToken(null));
-                    dispatch(setUser(null));
-                    dispatch(setLoginState());
-                }, 200);
+                    ).then(() => {
+                        dispatch(setToken(null));
+                        dispatch(setUser(null));
+                        dispatch(setLoginState());
+                    });
+                }, 20);
             })
             .catch(() => {
                 message.warning('退出失败');

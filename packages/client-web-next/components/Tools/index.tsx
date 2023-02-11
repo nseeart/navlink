@@ -76,10 +76,13 @@ const Tools = ({ uuid }: SiteProps) => {
     }, [loginState]);
 
     const handleClick = (type: TooItemType) => {
+        console.log('====2', profile);
         if (!profile) {
+            console.log('====1');
             dispatch(setOpen(true));
             return;
         }
+        console.log('====3');
         like({
             type,
             siteId: detail.id || 0,
